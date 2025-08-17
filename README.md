@@ -19,6 +19,39 @@ It’s useful for **traffic monitoring, enforcement, and analytics**.
 
 ---
 
+## 📂 Repository Structure
+
+```
+Car-colour-detection/
+├── app.py
+│ 
+├── models/
+│ └── blue_car_classifier.keras
+│
+├── yolo/
+│ └── yolov8.pt
+│
+├── notebooks/
+│ └── car_colour_detection.ipynb
+│
+├── data/
+│ ├── input/
+│ │ └── sample_input.mp4
+│ └── output/
+│   └── sample_output.mp4
+│
+├── results/
+│ ├── evaluation_metrics.png
+│ ├── confusion_matrix.png
+│ └── classification_report.png
+│
+├── requirements.txt
+└── README.md
+
+``` 
+
+---
+
 ## 🚀 Features  
 - 🚗 **Colour-specific car detection** (blue vs other colours)  
 - 🟥 Red bounding box for blue cars, 🟦 blue bounding box for others  
@@ -48,3 +81,5 @@ It’s useful for **traffic monitoring, enforcement, and analytics**.
 ---
 
 ## 📈 Example Output  
+<img src="data/previews/preview.jpeg" alt="Sample Output" width="400"/>
+
