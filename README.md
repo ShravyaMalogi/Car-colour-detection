@@ -83,3 +83,16 @@ Car-colour-detection/
 ## 📈 Example Output  
 <img src="data/previews/preview.jpeg" alt="Sample Output" width="400"/>
 
+---
+
+## 🏃 How to Run  
+```bash
+# Clone the repository
+git clone https://github.com/ShravyaMalogi/Car-colour-detection.git
+cd Car-colour-detection
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Streamlit app
+streamlit run app.py
