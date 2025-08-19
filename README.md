@@ -29,10 +29,10 @@ Car-colour-detection/
 │ └── blue_car_classifier.keras
 │
 ├── yolo/
-│ └── yolov8.pt
+│ └── yolov8s.pt
 │
 ├── notebooks/
-│ └── car_colour_detection.ipynb
+│ └── Car_Colour_Detection.ipynb
 │
 ├── data/
 │ ├── input/
