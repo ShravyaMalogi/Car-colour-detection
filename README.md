@@ -36,9 +36,9 @@ Car-colour-detection/
 │
 ├── data/
 │ ├── input/
-│ │ └── sample_input.mp4
+│ │ └── sample_inputs
 │ └── output/
-│   └── sample_output.mp4
+│   └── sample_outputs
 │
 ├── results/
 │ ├── evaluation_metrics.png
