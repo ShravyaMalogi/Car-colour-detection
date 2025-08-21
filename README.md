@@ -72,7 +72,7 @@ Car-colour-detection/
 3. **Bounding Boxes** →  
    - Blue cars → Red boxes  
    - Other cars → Blue boxes  
-4. **Counting** → Number of cars & people displayed live  
+4. **Counting** → Number of cars & people displayed on top 
 
 ---
 
@@ -83,7 +83,21 @@ Car-colour-detection/
 
 ---
 
-## 🏃 How to Run  
+## ▶️ How to Run  
+
+In GitHub Codespaces
+```bash
+# Update the package list and then install the libgl1 graphics library
+sudo apt-get update && sudo apt-get install libgl1
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Streamlit app
+streamlit run app.py
+```
+
+On Local System
 ```bash
 # Clone the repository
 git clone https://github.com/ShravyaMalogi/Car-colour-detection.git
