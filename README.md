@@ -68,7 +68,7 @@ Car-colour-detection/
 
 ## 📜 How It Works  
 1. **Detection** → YOLO detects cars & people in each frame  
-2. **Classification** → Car colours are identified (blue or not)  
+2. **Classification** → Car colours are identified  
 3. **Bounding Boxes** →  
    - Blue cars → Red boxes  
    - Other cars → Blue boxes  
@@ -77,7 +77,9 @@ Car-colour-detection/
 ---
 
 ## 📈 Example Output  
-<img src="data/previews/preview.jpeg" alt="Sample Output" width="400"/>
+
+![visuals](/data/previews/preview1.jpg)
+![visuals](/data/previews/preview2.jpg)
 
 ---
 
