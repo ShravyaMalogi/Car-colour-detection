@@ -79,7 +79,7 @@ Car-colour-detection/
 ## 📈 Example Output  
 
 ![visuals](/data/previews/preview1.jpg)
-![output](/data/output/sample_output3.jpg)
+![output](/data/output/sample_output2.jpg)
 
 ---
 
