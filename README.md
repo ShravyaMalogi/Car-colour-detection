@@ -31,6 +31,8 @@ Car-colour-detection/
 ├── yolo/
 │ └── yolov8s.pt
 │
+├── style.css
+│
 ├── notebooks/
 │ └── Car_Colour_Detection.ipynb
 │
