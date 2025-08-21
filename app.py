@@ -7,22 +7,19 @@ import tempfile
 import os
 from PIL import Image
 
-# Page config
 st.set_page_config(page_title="Car & People Detection", layout="wide")
 
-# Load CSS from style.css
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ================= SETTINGS =================
-YOLO_WEIGHTS = "yolo/yolov8s.pt"             # YOLO model
-COLOR_MODEL_PATH = "model/blue_car_classifier.keras"  # Car color classifier
-COLOR_CLASSES = ["blue", "not_blue"]         # only 2 classes
-BLUE_CONF_THRESHOLD = 0.75                   # Confidence threshold for blue detection
-MIN_BOX_SIZE = 50                             # Ignore tiny detections
-# If your sigmoid outputs "not_blue" as positive, flip this:
+
+YOLO_WEIGHTS = "yolo/yolov8s.pt"             
+COLOR_MODEL_PATH = "model/blue_car_classifier.keras"  
+COLOR_CLASSES = ["blue", "not_blue"]         
+BLUE_CONF_THRESHOLD = 0.75                  
+MIN_BOX_SIZE = 50                            
 SIGMOID_POS_CLASS = "not_blue"
-# ============================================
+
 
 st.title("🚗 Car Color Detection (with People-count)")
 
@@ -30,7 +27,7 @@ uploaded_file = st.file_uploader("Upload an image or video",
                                  type=["jpg", "jpeg", "png", "mp4", "avi", "mov", "mkv"])
 process_button = st.button("Process File")
 
-# ---------- helper for color classification ----------
+
 def classify_car_color(car_crop_bgr, color_model, model_input_shape, threshold=0.9):
     car_img = cv2.cvtColor(car_crop_bgr, cv2.COLOR_BGR2RGB)
     car_img = cv2.resize(car_img, model_input_shape)
@@ -40,7 +37,6 @@ def classify_car_color(car_crop_bgr, color_model, model_input_shape, threshold=0
     pred = color_model.predict(car_img, verbose=0)
 
     if pred.shape[-1] == 1:
-        # sigmoid: one output
         p = float(pred[0][0])
         if SIGMOID_POS_CLASS == "blue":
             p_blue = p
@@ -53,7 +49,7 @@ def classify_car_color(car_crop_bgr, color_model, model_input_shape, threshold=0
 
     label = "blue" if p_blue >= threshold else "not_blue"
     return label, p_blue
-# -----------------------------------------------------
+
 
 if uploaded_file and process_button:
     with st.spinner("Loading models..."):
@@ -64,10 +60,9 @@ if uploaded_file and process_button:
     file_extension = uploaded_file.name.split(".")[-1].lower()
     is_video = file_extension in ["mp4", "avi", "mov", "mkv"]
 
-    col1, col2 = st.columns(2)  # 👈 side-by-side layout
+    col1, col2 = st.columns(2) 
 
     if is_video:
-        # ================= VIDEO PROCESSING =================
         tfile = tempfile.NamedTemporaryFile(delete=False)
         tfile.write(uploaded_file.read())
         input_path = tfile.name
@@ -85,11 +80,11 @@ if uploaded_file and process_button:
             out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
             progress_bar = st.progress(0)
-            frame_placeholder = col2.empty()  # processed output goes right
+            frame_placeholder = col2.empty()  
             frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
             frame_no = 0
 
-            with col1:  # left = input preview
+            with col1:  
                 st.video(input_path)
 
             while True:
@@ -105,10 +100,10 @@ if uploaded_file and process_button:
                     x1, y1, x2, y2 = map(int, box.xyxy[0])
                     w, h = x2 - x1, y2 - y1
 
-                    if cls_id == 0:  # Person
+                    if cls_id == 0:  
                         frame_people += 1
 
-                    elif cls_id == 2 and w > MIN_BOX_SIZE and h > MIN_BOX_SIZE:  # Car
+                    elif cls_id == 2 and w > MIN_BOX_SIZE and h > MIN_BOX_SIZE:  
                         frame_cars += 1
                         car_crop = frame[y1:y2, x1:x2]
                         if car_crop.size > 0:
@@ -147,7 +142,6 @@ if uploaded_file and process_button:
                                file_name="processed_video.mp4", mime="video/mp4")
 
     else:
-        # ================= IMAGE PROCESSING =================
         img = Image.open(uploaded_file)
         img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
@@ -159,10 +153,10 @@ if uploaded_file and process_button:
             x1, y1, x2, y2 = map(int, box.xyxy[0])
             w, h = x2 - x1, y2 - y1
 
-            if cls_id == 0:  # Person
+            if cls_id == 0: 
                 frame_people += 1
 
-            elif cls_id == 2 and w > MIN_BOX_SIZE and h > MIN_BOX_SIZE:  # Car
+            elif cls_id == 2 and w > MIN_BOX_SIZE and h > MIN_BOX_SIZE:  
                 frame_cars += 1
                 car_crop = img_cv[y1:y2, x1:x2]
                 if car_crop.size > 0:
@@ -186,10 +180,10 @@ if uploaded_file and process_button:
 
         st.success("Processing complete!")
 
-        with col1:  # left column = input
+        with col1:  
             st.image(img, caption="Input", use_container_width=True)
 
-        with col2:  # right column = processed
+        with col2:  
             st.image(cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB),
                      caption="Processed", use_container_width=True)
 
