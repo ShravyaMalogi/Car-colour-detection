@@ -1,19 +1,16 @@
-# 🚦 Car Colour Detection & People Counting at Traffic Signals  
+# 🚙 Car Colour Detection along with People Count 
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue)](https://www.python.org/)  
 [![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)](https://opencv.org/)  
 [![YOLO](https://img.shields.io/badge/YOLO-Object%20Detection-orange)](https://pjreddie.com/darknet/yolo/)  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
-> Detects blue cars, counts vehicles, and counts people at traffic signals — all in **real-time**.  
+> Detects blue cars, counts vehicles, and counts people at traffic signals.  
 
 ---
 
 ## 📌 Overview  
-This project uses **YOLO object detection** combined with a **colour classification model** to detect cars at a traffic signal and determine their colour.  
-- **Blue cars** → Highlighted with **red bounding boxes**  
-- **Other cars** → Highlighted with **blue bounding boxes**  
-- **People** → Counted and displayed on-screen  
+This project uses YOLO object detection with a color classification model to **detect cars** at traffic signals, **identify their colors**, and **count people**.
 
 It’s useful for **traffic monitoring, enforcement, and analytics**.  
 
@@ -55,21 +52,18 @@ Car-colour-detection/
 ---
 
 ## 🚀 Features  
-- 🚗 **Colour-specific car detection** (blue vs other colours)  
-- 🟥 Red bounding box for blue cars, 🟦 blue bounding box for others  
-- 👥 People counting at traffic signals  
-- 📊 Real-time display of **car count + people count**  
-- ⚡ Works with live camera or video files  
+- 🚗 **Colour-specific car detection**   
+- 🔲 **Bounding Box** for cars 
+- 📊 Display of **car colour & count + people count**  
+- ⚡ Works with images and video files
+- 🎯 Achieved **~96% Accuracy**  
 
 ---
 
-## 🛠 Tech Stack  
-- **Python 3.x**  
-- **OpenCV** for image & video processing  
-- **YOLO** for car & person detection  
-- **NumPy** for data handling  
-- **Pillow** for image preprocessing  
-
+## 📂 Dataset  
+- **Source:** [Car Colours Dataset](https://www.kaggle.com/datasets/landrykezebou/vcor-vehicle-color-recognition-dataset)  
+- **Format Used:** Images sorted into color-labeled folders
+  
 ---
 
 ## 📜 How It Works  
