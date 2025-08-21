@@ -43,7 +43,6 @@ def classify_car_color(car_crop_bgr, color_model, model_input_shape, threshold=0
         else:
             p_blue = 1.0 - p
     else:
-        # softmax: multi-class
         blue_index = COLOR_CLASSES.index("blue") if "blue" in COLOR_CLASSES else 0
         p_blue = float(pred[0][blue_index])
 
